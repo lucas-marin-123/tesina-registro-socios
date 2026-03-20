@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sistema de Notas</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f4f4;
+text-align:center;
+}
+
+input,select,button{
+padding:8px;
+margin:5px;
+}
+
+table{
+margin:auto;
+border-collapse:collapse;
+width:80%;
+background:white;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:8px;
+}
+
+th{
+background:#0077ff;
+color:white;
+}
+
+.aprobado{
+color:green;
+font-weight:bold;
+}
+
+.desaprobado{
+color:red;
+font-weight:bold;
+}
+
+#app{
+display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>Registro / Login</h2>
+
+<div id="login">
+
+<input id="nombre" placeholder="Nombre">
+
+<input type="password" id="password" placeholder="Contraseña">
+
+<select id="rol">
+<option value="profesor">Profesor</option>
+<option value="directivo">Directivo</option>
+<option value="alumno">Alumno</option>
+</select>
+
+<br>
+
+<button onclick="registrar()">Registrar</button>
+<button onclick="login()">Entrar</button>
+
+</div>
+
+
+<div id="app">
+
+<h2 id="usuario"></h2>
+
+<div id="formNotas">
+
+<h3>Agregar Nota</h3>
+
+<input id="alumno" placeholder="Alumno">
+
+<select id="materia">
+<option>Matemática</option>
+<option>Lengua</option>
+<option>Historia</option>
+<option>Geografía</option>
+<option>Inglés</option>
+</select>
+
+<input type="number" id="nota" min="1" max="10">
+
+<input type="date" id="fecha">
+
+<button onclick="agregarNota()">Agregar</button>
+
+</div>
+
+<h3>Notas</h3>
+
+<table>
+
+<tr>
+<th>Alumno</th>
+<th>Materia</th>
+<th>Nota</th>
+<th>Resultado</th>
+<th>Fecha</th>
+<th>Acción</th>
+</tr>
+
+<tbody id="tabla"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+let usuarios = JSON.parse(localStorage.getItem("usuarios")) || []
+let notas = JSON.parse(localStorage.getItem("notas")) || []
+
+let usuarioActual = null
+
+
+function guardar(){
+
+localStorage.setItem("usuarios",JSON.stringify(usuarios))
+localStorage.setItem("notas",JSON.stringify(notas))
+
+}
+
+
+function registrar(){
+
+let nombre = document.getElementById("nombre").value
+let password = document.getElementById("password").value
+let rol = document.getElementById("rol").value
+
+if(!nombre || !password){
+alert("Completa los datos")
+return
+}
+
+usuarios.push({
+nombre,
+password,
+rol
+})
+
+guardar()
+
+alert("Usuario registrado")
+
+}
+
+
+function login(){
+
+let nombre = document.getElementById("nombre").value
+let password = document.getElementById("password").value
+
+for(let u of usuarios){
+
+if(u.nombre==nombre && u.password==password){
+
+usuarioActual = u
+
+document.getElementById("login").style.display="none"
+document.getElementById("app").style.display="block"
+
+document.getElementById("usuario").innerText =
+"Usuario: "+u.nombre+" ("+u.rol+")"
+
+if(u.rol=="alumno"){
+document.getElementById("formNotas").style.display="none"
+}
+
+mostrar()
+
+return
+
+}
+
+}
+
+alert("Usuario incorrecto")
+
+}
+
+
+function agregarNota(){
+
+let alumno = document.getElementById("alumno").value
+let materia = document.getElementById("materia").value
+let nota = document.getElementById("nota").value
+let fecha = document.getElementById("fecha").value
+
+if(!alumno || !nota || !fecha) return
+
+notas.push({
+alumno,
+materia,
+nota,
+fecha
+})
+
+guardar()
+
+mostrar()
+
+}
+
+
+function mostrar(){
+
+let tabla = document.getElementById("tabla")
+
+tabla.innerHTML=""
+
+notas.forEach((n,i)=>{
+
+if(usuarioActual.rol=="alumno" && n.alumno!=usuarioActual.nombre){
+return
+}
+
+let resultado = n.nota >= 7 ? "Aprobado" : "Desaprobado"
+
+let clase = n.nota >= 7 ? "aprobado" : "desaprobado"
+
+let fila="<tr>"
+
+fila+="<td>"+n.alumno+"</td>"
+fila+="<td>"+n.materia+"</td>"
+fila+="<td>"+n.nota+"</td>"
+fila+="<td class='"+clase+"'>"+resultado+"</td>"
+fila+="<td>"+n.fecha+"</td>"
+
+if(usuarioActual.rol=="profesor"){
+fila+="<td><button onclick='borrar("+i+")'>Borrar</button></td>"
+}else{
+fila+="<td>-</td>"
+}
+
+fila+="</tr>"
+
+tabla.innerHTML+=fila
+
+})
+
+}
+
+
+function borrar(i){
+
+notas.splice(i,1)
+
+guardar()
+
+mostrar()
+
+}
+
+</script>
+
+</body>
+</html>
