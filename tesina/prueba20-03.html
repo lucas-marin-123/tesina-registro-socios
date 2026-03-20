@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Club - Gestión de Socios</title>
+
+<style>
+body { font-family: Arial; margin: 0; background: #f4f4f4; }
+
+.container { display: none; padding: 15px; }
+.active { display: block; }
+
+.login-box {
+    max-width: 350px;
+    margin: 80px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+}
+
+button {
+    padding: 10px;
+    width: 100%;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* PANEL */
+.sidebar {
+    width: 200px;
+    background: #333;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    padding: 15px;
+}
+
+.main {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+/* TABLA */
+table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login" class="container active">
+    <div class="login-box">
+        <h2>Login</h2>
+        <input id="loginEmail" placeholder="Correo">
+        <input id="loginPass" type="password" placeholder="Contraseña">
+        <button onclick="entrar()">Ingresar</button>
+    </div>
+</div>
+
+<!-- PANEL -->
+<div id="panel" class="container">
+    <div class="sidebar">
+        <h2 id="rolUsuario"></h2>
+        <button onclick="mostrarCrear()">Crear Usuario</button>
+        <button onclick="cerrarSesion()">Cerrar sesión</button>
+    </div>
+
+    <div class="main">
+
+        <!-- ADMIN -->
+        <div id="vistaAdmin">
+            <h2>Socios</h2>
+
+            <button onclick="toggleFormSocio()">+ Agregar Socio</button>
+
+            <div id="formSocio" style="display:none; background:white; padding:10px;">
+                <input id="nombreSocio" placeholder="Nombre">
+                <input id="emailSocio" placeholder="Email del socio">
+                <button onclick="agregarSocio()">Guardar</button>
+            </div>
+
+            <div id="crearUser" style="display:none; background:white; padding:10px;">
+                <input id="nuevoEmail" placeholder="Correo">
+                <input id="nuevoPass" placeholder="Contraseña">
+                <select id="nuevoRol">
+                    <option value="Admin">Administrador</option>
+                    <option value="Socio">Socio</option>
+                </select>
+                <button onclick="crearUsuario()">Guardar</button>
+            </div>
+
+            <table id="tabla"></table>
+        </div>
+
+        <!-- SOCIO -->
+        <div id="vistaSocio" style="display:none;">
+            <h2>Mi estado</h2>
+            <p><b>Nombre:</b> <span id="miNombre"></span></p>
+            <p><b>Estado:</b> <span id="miEstado"></span></p>
+            <p><b>Próxima cuota:</b> <span id="miCuota"></span></p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+// DATOS
+let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [
+    { email: "admin@mail.com", pass: "1234", rol: "Admin" }
+];
+
+let socios = JSON.parse(localStorage.getItem("socios")) || [];
+let usuarioActual = null;
+
+// GUARDAR
+function guardar() {
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    localStorage.setItem("socios", JSON.stringify(socios));
+}
+
+// LOGIN
+function entrar() {
+    let user = usuarios.find(u =>
+        u.email === loginEmail.value && u.pass === loginPass.value
+    );
+
+    if (!user) return alert("Datos incorrectos");
+
+    usuarioActual = user;
+
+    login.classList.remove("active");
+    panel.classList.add("active");
+
+    rolUsuario.innerText = user.rol;
+
+    if (user.rol === "Admin") {
+        vistaAdmin.style.display = "block";
+        vistaSocio.style.display = "none";
+        renderSocios();
+    } else {
+        vistaAdmin.style.display = "none";
+        vistaSocio.style.display = "block";
+        mostrarSocio();
+    }
+}
+
+// LOGOUT
+function cerrarSesion() {
+    usuarioActual = null;
+    panel.classList.remove("active");
+    login.classList.add("active");
+}
+
+// ADMIN
+function mostrarCrear() {
+    if (usuarioActual.rol !== "Admin") return;
+    crearUser.style.display = crearUser.style.display === "none" ? "block" : "none";
+}
+
+function crearUsuario() {
+    if (!nuevoEmail.value.includes("@") || !nuevoPass.value) {
+        return alert("Completar correctamente");
+    }
+
+    usuarios.push({
+        email: nuevoEmail.value,
+        pass: nuevoPass.value,
+        rol: nuevoRol.value
+    });
+
+    guardar();
+    alert("Usuario creado");
+}
+
+function toggleFormSocio() {
+    formSocio.style.display = formSocio.style.display === "none" ? "block" : "none";
+}
+
+function agregarSocio() {
+    if (!nombreSocio.value || !emailSocio.value) {
+        return alert("Completar campos");
+    }
+
+    let fecha = new Date();
+    fecha.setDate(fecha.getDate() + 30);
+
+    socios.push({
+        nombre: nombreSocio.value,
+        email: emailSocio.value,
+        fecha: fecha.toISOString()
+    });
+
+    guardar();
+    renderSocios();
+}
+
+// TABLA
+function renderSocios() {
+    tabla.innerHTML = `
+        <tr>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Cuota</th>
+        </tr>
+    `;
+
+    socios.forEach(s => {
+        let fecha = new Date(s.fecha);
+        let estado = fecha < new Date() ? "Inactivo" : "Activo";
+
+        let fila = tabla.insertRow();
+        fila.innerHTML = `
+            <td>${s.nombre}</td>
+            <td style="color:${estado==="Activo"?"green":"red"}">${estado}</td>
+            <td>${fecha.toLocaleDateString()}</td>
+        `;
+    });
+}
+
+// SOCIO
+function mostrarSocio() {
+    let s = socios.find(x => x.email === usuarioActual.email);
+
+    if (!s) return;
+
+    let fecha = new Date(s.fecha);
+    let estado = fecha < new Date() ? "Inactivo" : "Activo";
+
+    miNombre.innerText = s.nombre;
+    miEstado.innerText = estado;
+    miEstado.style.color = estado === "Activo" ? "green" : "red";
+    miCuota.innerText = fecha.toLocaleDateString();
+}
+
+// ENTER FUNCIONAL
+function manejarEnter(inputs, accionFinal) {
+    inputs.forEach((input, index) => {
+        input.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                if (index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                } else {
+                    accionFinal();
+                }
+            }
+        });
+    });
+}
+
+window.onload = () => {
+    manejarEnter([loginEmail, loginPass], entrar);
+    manejarEnter([nuevoEmail, nuevoPass, nuevoRol], crearUsuario);
+    manejarEnter([nombreSocio, emailSocio], agregarSocio);
+};
+</script>
+
+</body>
+</html>
