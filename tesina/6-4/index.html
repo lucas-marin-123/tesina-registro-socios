@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Club Deportivo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="logo.png" alt="Logo Club">
+  </div>
+  <div>
+    <button onclick="toggleTheme()">🌙</button>
+    <button onclick="mostrarPantalla('login')">Iniciar Sesión</button>
+  </div>
+</header>
+
+<!-- INICIO -->
+<section id="inicio" class="pantalla activa">
+  <div class="landing">
+    <h1>Bienvenido</h1>
+    <p>Tu progreso empieza aquí</p>
+  </div>
+
+  <!-- CALENDARIO -->
+  <div class="calendario">
+    <div class="cal-header">
+      <button onclick="cambiarMes(-1)">⬅</button>
+      <h2 id="mesAnio"></h2>
+      <button onclick="cambiarMes(1)">➡</button>
+    </div>
+
+    <div class="dias">
+      <div>Dom</div><div>Lun</div><div>Mar</div><div>Mié</div>
+      <div>Jue</div><div>Vie</div><div>Sáb</div>
+    </div>
+
+    <div id="gridCalendario" class="grid"></div>
+  </div>
+</section>
+
+<!-- LOGIN -->
+<section id="login" class="pantalla">
+  <h2>Iniciar Sesión</h2>
+  <input type="email" id="email" placeholder="Correo"><br>
+  <input type="password" id="password" placeholder="Contraseña"><br>
+  <button onclick="login()">Ingresar</button>
+</section>
+
+<!-- ADMIN -->
+<section id="admin" class="pantalla dashboard">
+  <aside class="sidebar">
+    <button onclick="mostrarSeccionAdmin('crearUsuario')">Crear Usuario</button>
+    <button onclick="mostrarSeccionAdmin('registrarSocio')">Registrar Socio</button>
+    <button onclick="mostrarSeccionAdmin('verSocios')">Ver Socios</button>
+    <button onclick="logout()">Salir</button>
+  </aside>
+
+  <main>
+    <div class="stats">
+      <div>Total Socios: <span id="totalSocios">0</span></div>
+      <div>Ingresos: $<span id="ingresos">0</span></div>
+    </div>
+
+    <div id="crearUsuario" class="admin-seccion">
+      <input id="nuevoEmail" placeholder="Email"><br>
+      <input id="nuevoPass" placeholder="Contraseña"><br>
+
+      <select id="nuevoRol" onchange="mostrarCampoDeporte()">
+        <option value="admin">Administrador</option>
+        <option value="entrenador">Entrenador</option>
+        <option value="socio">Socio</option>
+      </select><br>
+
+      <input id="deporteProfe" placeholder="Deporte" style="display:none;"><br>
+      <button onclick="crearUsuario()">Guardar</button>
+    </div>
+
+    <div id="registrarSocio" class="admin-seccion">
+      <input id="nombreSocio" placeholder="Nombre"><br>
+      <input id="deporteSocio" placeholder="Deporte"><br>
+      <select id="estadoSocio">
+        <option>Al día</option>
+        <option>Pendiente</option>
+      </select><br>
+      <button onclick="agregarSocio()">Agregar</button>
+    </div>
+
+    <div id="verSocios" class="admin-seccion">
+      <input id="buscador" onkeyup="buscarSocio()" placeholder="Buscar"><br>
+      <table id="tablaSocios"><tbody></tbody></table>
+    </div>
+  </main>
+</section>
+
+<!-- ENTRENADOR -->
+<section id="entrenador" class="pantalla">
+  <h2 id="tituloEntrenador"></h2>
+  <div id="listaEntrenador" class="cards"></div>
+
+  <h3>Reservar cancha</h3>
+  <input type="date" id="fechaReserva">
+  <input type="time" id="horaReserva">
+  <button onclick="reservarCancha()">Reservar</button>
+
+  <h3>Eventos</h3>
+  <input type="date" id="fechaEvento">
+  <input type="text" id="eventoTexto">
+  <button onclick="agregarEvento()">Agregar</button>
+
+  <button onclick="logout()">Salir</button>
+</section>
+
+<!-- SOCIO -->
+<section id="socio" class="pantalla">
+  <div id="estadoSocioBox" class="estado"></div>
+
+  <button onclick="pagar()">Pagar</button>
+
+  <h3>Historial</h3>
+  <ul id="historialPagos"></ul>
+
+  <button onclick="logout()">Salir</button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

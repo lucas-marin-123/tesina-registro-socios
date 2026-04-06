@@ -1,0 +1,138 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f4f4f4;
+}
+
+.dark {
+  background: #1e1e1e;
+  color: white;
+}
+
+.pantalla { display: none; }
+.activa { display: block; }
+
+.dashboard { display: none; }
+.dashboard.activa { display: flex; }
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  background: #222;
+  color: white;
+  padding: 15px;
+}
+
+/* LOGO */
+.logo img {
+  height: 50px;
+}
+
+/* BOTONES */
+button {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+}
+
+button:hover {
+  background: #3498db;
+  color: white;
+}
+
+/* LANDING */
+.landing {
+  height: 80vh;
+  background: url("https://images.unsplash.com/photo-1558611848-73f7eb4001a1") no-repeat center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 200px;
+  background: #2c3e50;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar button {
+  background: none;
+  color: white;
+  text-align: left;
+  padding: 15px;
+}
+
+main { padding: 20px; flex:1; }
+
+.stats { font-size: 20px; margin-bottom: 20px; }
+
+/* TABLA */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* CARDS */
+.cards {
+  display: flex;
+  gap: 10px;
+}
+
+.card {
+  background: green;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* SOCIO */
+.estado {
+  padding: 20px;
+  color: white;
+  border-radius: 10px;
+}
+
+.verde { background: green; }
+.rojo { background: red; }
+
+/* CALENDARIO */
+.calendario {
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.cal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.grid div {
+  padding: 10px;
+  text-align: center;
+}
+
+.evento {
+  background: green;
+  color: white;
+}
