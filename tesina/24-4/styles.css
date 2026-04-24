@@ -1,0 +1,281 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BASE ===== */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+/* ===== HEADER ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f172a;
+  color: white;
+  padding: 15px 25px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 45px;
+}
+
+/* ===== BOTONES ===== */
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+  font-weight: 500;
+}
+
+button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+/* ===== INPUTS ===== */
+input, select {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+}
+
+/* ===== PANTALLAS ===== */
+.pantalla {
+  display: none;
+  padding: 20px;
+}
+
+.activa {
+  display: block;
+}
+
+/* ===== LANDING ===== */
+.landing {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+              url("https://images.unsplash.com/photo-1558611848-73f7eb4001a1") center/cover;
+  color: white;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.landing h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: white;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* ===== LOGIN ===== */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+}
+
+/* ===== DASHBOARD ===== */
+.dashboard {
+  display: flex;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 220px;
+  background: #1e293b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.sidebar h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.sidebar button {
+  background: none;
+  color: #cbd5e1;
+  text-align: left;
+  padding: 15px;
+  border-radius: 0;
+}
+
+.sidebar button:hover {
+  background: #334155;
+  color: white;
+}
+
+/* ===== MAIN ===== */
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* ===== STATS ===== */
+.stats {
+  display: flex;
+  gap: 20px;
+}
+
+.stats .card {
+  flex: 1;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* ===== TABLA ===== */
+table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* ===== CARDS ENTRENADOR ===== */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cards div {
+  background: #10b981;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* ===== ESTADO SOCIO ===== */
+.estado {
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.verde {
+  background: #10b981;
+  color: white;
+}
+
+.rojo {
+  background: #ef4444;
+  color: white;
+}
+
+/* ===== CALENDARIO ===== */
+.calendario {
+  margin-top: 30px;
+}
+
+.cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.grid div {
+  padding: 10px;
+  background: white;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.evento {
+  background: #2563eb;
+  color: white;
+}
+
+/* ===== DARK MODE ===== */
+.dark {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.dark .card {
+  background: #1e293b;
+}
+
+.dark header {
+  background: #020617;
+}
+
+.dark .sidebar {
+  background: #020617;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .sidebar button {
+    flex: 1;
+    text-align: center;
+  }
+
+  .stats {
+    flex-direction: column;
+  }
+
+  .landing h1 {
+    font-size: 28px;
+  }
+}
