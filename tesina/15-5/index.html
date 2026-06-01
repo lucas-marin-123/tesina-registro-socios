@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Club Deportivo</title>
+
+<link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+
+    <h2>Club Deportivo</h2>
+
+  </div>
+
+  <div class="header-actions">
+
+    <button onclick="toggleTheme()">Modo</button>
+
+    <button onclick="mostrarPantalla('login')">
+      Iniciar Sesión
+    </button>
+
+  </div>
+
+</header>
+
+<!-- INICIO -->
+<section id="inicio" class="pantalla activa">
+
+  <div class="landing">
+
+    <h1>Bienvenido</h1>
+
+    <p>Gestioná tu club</p>
+
+  </div>
+
+  <!-- CALENDARIO -->
+  <div class="calendario card">
+
+    <div class="cal-header">
+
+      <button onclick="cambiarMes(-1)">←</button>
+
+      <h2 id="mesAnio"></h2>
+
+      <button onclick="cambiarMes(1)">→</button>
+
+    </div>
+
+    <div class="dias">
+
+      <div>Dom</div>
+      <div>Lun</div>
+      <div>Mar</div>
+      <div>Mié</div>
+      <div>Jue</div>
+      <div>Vie</div>
+      <div>Sáb</div>
+
+    </div>
+
+    <div id="gridCalendario" class="grid"></div>
+
+  </div>
+
+</section>
+
+<!-- LOGIN -->
+<section id="login" class="pantalla center">
+
+  <div class="card login-box">
+
+    <h2>Iniciar Sesión</h2>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Correo"
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Contraseña"
+    >
+
+    <button onclick="login()">
+      Ingresar
+    </button>
+
+  </div>
+
+</section>
+
+<!-- ADMIN -->
+<section id="admin" class="pantalla dashboard">
+
+  <h2>Panel Administrador</h2>
+
+  <button onclick="logout()">
+    Salir
+  </button>
+
+</section>
+
+<!-- ENTRENADOR -->
+<section id="entrenador" class="pantalla">
+
+  <h2>Panel Entrenador</h2>
+
+  <button onclick="logout()">
+    Salir
+  </button>
+
+</section>
+
+<!-- SOCIO -->
+<section id="socio" class="pantalla">
+
+  <h2>Panel Socio</h2>
+
+  <button onclick="pagar()">
+    Pagar cuota
+  </button>
+
+  <ul id="historialPagos"></ul>
+
+  <button onclick="logout()">
+    Salir
+  </button>
+
+</section>
+
+<footer class="footer">
+
+  <h3>Club Deportivo</h3>
+
+  <p>Email: club@mail.com</p>
+
+  <p>Tel: 3571-000000</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

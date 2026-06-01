@@ -20,6 +20,10 @@ header {
   background: #0f172a;
   color: white;
   padding: 15px 25px;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .logo {
@@ -62,7 +66,6 @@ input, select {
 /* ===== PANTALLAS ===== */
 .pantalla {
   display: none;
-  padding: 20px;
 }
 
 .activa {
@@ -99,6 +102,11 @@ input, select {
 
 /* ===== LOGIN ===== */
 .center {
+  justify-content: center;
+  align-items: center;
+}
+
+.pantalla.center.activa {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,7 +119,7 @@ input, select {
 }
 
 /* ===== DASHBOARD ===== */
-.dashboard {
+.pantalla.dashboard.activa {
   display: flex;
 }
 
@@ -206,8 +214,20 @@ td {
 }
 
 /* ===== CALENDARIO ===== */
+.dias {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+}
 .calendario {
   margin-top: 30px;
+}
+.dark .calendario {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 12px;
 }
 
 .cal-header {
@@ -236,6 +256,28 @@ td {
 }
 
 /* ===== DARK MODE ===== */
+/* ===== CALENDARIO DARK ===== */
+.dark .grid div {
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.dark .dias div {
+  color: #cbd5e1;
+}
+
+.dark .calendario {
+  background: #1e293b;
+}
+
+.dark .cal-header h2 {
+  color: #e2e8f0;
+}
+
+.dark .evento {
+  background: #3b82f6;
+  color: white;
+}
 .dark {
   background: #0f172a;
   color: #e2e8f0;
@@ -278,4 +320,17 @@ td {
   .landing h1 {
     font-size: 28px;
   }
+}
+/* ===== FOOTER ===== */
+
+.footer {
+  background: #0f172a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.dark .footer {
+  background: #020617;
 }
