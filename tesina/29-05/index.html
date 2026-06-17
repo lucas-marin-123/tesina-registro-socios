@@ -2,15 +2,10 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Club Deportivo</title>
-
+    <title>Club Zone</title>
     <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body>
@@ -20,15 +15,13 @@
     <header>
 
         <div class="logo">
-
-            <h2>Club Deportivo</h2>
-
+            <h2>CLUB ZONE</h2>
         </div>
 
         <div class="header-actions">
 
             <button onclick="toggleTheme()">
-                Modo Oscuro
+                🌙 Tema
             </button>
 
             <button onclick="mostrarPantalla('login')">
@@ -45,11 +38,26 @@
 
         <div class="landing">
 
-            <h1>Bienvenido al Club Deportivo</h1>
+            <h1>Bienvenido a Club Zone</h1>
 
             <p>
-                Gestión de socios, entrenadores, pagos y eventos
+                La plataforma inteligente para administrar socios,
+                entrenadores, pagos y actividades deportivas.
             </p>
+
+            <div class="card">
+
+                <h3>¿Qué ofrece Club Zone?</h3>
+
+                <p>✓ Gestión completa de socios</p>
+                <p>✓ Control de cuotas y pagos</p>
+                <p>✓ Administración de entrenadores</p>
+                <p>✓ Calendario de actividades</p>
+                <p>✓ Plataforma moderna y segura</p>
+
+            </div>
+
+            <br>
 
             <button onclick="mostrarPantalla('login')">
                 Comenzar
@@ -76,7 +84,6 @@
             </div>
 
             <div class="dias">
-
                 <div>Dom</div>
                 <div>Lun</div>
                 <div>Mar</div>
@@ -84,7 +91,6 @@
                 <div>Jue</div>
                 <div>Vie</div>
                 <div>Sáb</div>
-
             </div>
 
             <div id="gridCalendario" class="grid"></div>
@@ -101,7 +107,7 @@
 
             <div class="card login-box">
 
-                <h2>Iniciar Sesión</h2>
+                <h2>Ingreso a Club Zone</h2>
 
                 <input
                     type="email"
@@ -135,7 +141,7 @@
 
         <aside class="sidebar">
 
-            <h3>Administrador</h3>
+            <h3>Panel Club Zone</h3>
 
             <button onclick="mostrarSeccionAdmin('registrarSocio')">
                 Registrar Socio
@@ -160,14 +166,13 @@
             <div class="stats">
 
                 <div class="card">
-                    Total Socios:
+                    <h3>Total Socios</h3>
                     <span id="totalSocios">0</span>
                 </div>
 
                 <div class="card">
-                    Ingresos:
-                    $
-                    <span id="ingresos">0</span>
+                    <h3>Ingresos</h3>
+                    $<span id="ingresos">0</span>
                 </div>
 
             </div>
@@ -181,7 +186,7 @@
                 <input
                     type="email"
                     id="nuevoEmail"
-                    placeholder="Correo"
+                    placeholder="Correo electrónico"
                 >
 
                 <input
@@ -207,7 +212,7 @@
                 </select>
 
                 <button onclick="crearUsuario()">
-                    Guardar
+                    Guardar Usuario
                 </button>
 
             </div>
@@ -221,7 +226,7 @@
                 <input
                     type="text"
                     id="nombreSocio"
-                    placeholder="Nombre"
+                    placeholder="Nombre completo"
                 >
 
                 <input
@@ -243,7 +248,7 @@
                 </select>
 
                 <button onclick="agregarSocio()">
-                    Registrar
+                    Registrar Socio
                 </button>
 
             </div>
@@ -265,11 +270,9 @@
                     <thead>
 
                         <tr>
-
                             <th>Nombre</th>
                             <th>Deporte</th>
                             <th>Estado</th>
-
                         </tr>
 
                     </thead>
@@ -290,9 +293,15 @@
 
         <div class="card">
 
-            <h2>Panel Entrenador</h2>
+            <h2>Club Zone - Entrenador</h2>
+
+            <p>
+                Gestión y seguimiento de socios.
+            </p>
 
             <div id="listaEntrenador"></div>
+
+            <br>
 
             <button onclick="logout()">
                 Cerrar Sesión
@@ -308,7 +317,7 @@
 
         <div class="card">
 
-            <h2>Panel Socio</h2>
+            <h2>Club Zone - Socio</h2>
 
             <div id="estadoSocioBox"></div>
 
@@ -319,6 +328,8 @@
             <h3>Historial de Pagos</h3>
 
             <ul id="historialPagos"></ul>
+
+            <br>
 
             <button onclick="logout()">
                 Cerrar Sesión
@@ -332,13 +343,15 @@
 
     <footer>
 
-        <h3>Contacto</h3>
+        <h3>Club Zone</h3>
 
-        <p>Email: clubdeportivo@gmail.com</p>
+        <p>Email: contacto@clubzone.com</p>
 
         <p>Teléfono: 3571-123456</p>
 
         <p>Río Tercero - Córdoba</p>
+
+        <p>© 2026 Club Zone - Todos los derechos reservados</p>
 
     </footer>
 

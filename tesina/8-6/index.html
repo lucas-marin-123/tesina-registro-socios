@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Zone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            <h2>CLUB ZONE</h2>
+        </div>
+
+        <div class="header-actions">
+
+            <button onclick="toggleTheme()">
+                🌙 Tema
+            </button>
+
+            <button onclick="mostrarPantalla('login')">
+                Iniciar Sesión
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- INICIO -->
+
+    <section id="inicio" class="pantalla activa">
+
+        <div class="landing">
+
+            <h1>Bienvenido a Club Zone</h1>
+
+            <p>
+                La plataforma inteligente para administrar socios,
+                entrenadores, pagos y actividades deportivas.
+            </p>
+
+            <div class="card">
+
+                <h3>¿Qué ofrece Club Zone?</h3>
+
+                <p>✓ Gestión completa de socios</p>
+                <p>✓ Control de cuotas y pagos</p>
+                <p>✓ Administración de entrenadores</p>
+                <p>✓ Calendario de actividades</p>
+                <p>✓ Plataforma moderna y segura</p>
+
+            </div>
+
+            <br>
+
+            <button onclick="mostrarPantalla('login')">
+                Comenzar
+            </button>
+
+        </div>
+
+        <!-- CALENDARIO -->
+
+        <div class="calendario card">
+
+            <div class="cal-header">
+
+                <button onclick="cambiarMes(-1)">
+                    ←
+                </button>
+
+                <h2 id="mesAnio"></h2>
+
+                <button onclick="cambiarMes(1)">
+                    →
+                </button>
+
+            </div>
+
+            <div class="dias">
+                <div>Dom</div>
+                <div>Lun</div>
+                <div>Mar</div>
+                <div>Mié</div>
+                <div>Jue</div>
+                <div>Vie</div>
+                <div>Sáb</div>
+            </div>
+
+            <div id="gridCalendario" class="grid"></div>
+
+        </div>
+
+    </section>
+
+    <!-- LOGIN -->
+
+    <section id="login" class="pantalla">
+
+        <div class="login-container">
+
+            <div class="card login-box">
+
+                <h2>Ingreso a Club Zone</h2>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Correo electrónico"
+                >
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Contraseña"
+                >
+
+                <button onclick="login()">
+                    Ingresar
+                </button>
+
+                <button onclick="mostrarPantalla('inicio')">
+                    Volver
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ADMIN -->
+
+    <section id="admin" class="pantalla dashboard">
+
+        <aside class="sidebar">
+
+            <h3>Panel Club Zone</h3>
+
+            <button onclick="mostrarSeccionAdmin('registrarSocio')">
+                Registrar Socio
+            </button>
+
+            <button onclick="mostrarSeccionAdmin('verSocios')">
+                Ver Socios
+            </button>
+
+            <button onclick="mostrarSeccionAdmin('crearUsuario')">
+                Crear Usuario
+            </button>
+
+            <button onclick="logout()">
+                Cerrar Sesión
+            </button>
+
+        </aside>
+
+        <main>
+
+            <div class="stats">
+
+                <div class="card">
+                    <h3>Total Socios</h3>
+                    <span id="totalSocios">0</span>
+                </div>
+
+                <div class="card">
+                    <h3>Ingresos</h3>
+                    $<span id="ingresos">0</span>
+                </div>
+
+            </div>
+
+            <!-- CREAR USUARIO -->
+
+            <div id="crearUsuario" class="admin-seccion card">
+
+                <h3>Crear Usuario</h3>
+
+                <input
+                    type="email"
+                    id="nuevoEmail"
+                    placeholder="Correo electrónico"
+                >
+
+                <input
+                    type="password"
+                    id="nuevoPassword"
+                    placeholder="Contraseña"
+                >
+
+                <select id="nuevoRol">
+
+                    <option value="admin">
+                        Administrador
+                    </option>
+
+                    <option value="entrenador">
+                        Entrenador
+                    </option>
+
+                    <option value="socio">
+                        Socio
+                    </option>
+
+                </select>
+
+                <button onclick="crearUsuario()">
+                    Guardar Usuario
+                </button>
+
+            </div>
+
+            <!-- REGISTRAR SOCIO -->
+
+            <div id="registrarSocio" class="admin-seccion card">
+
+                <h3>Registrar Socio</h3>
+
+                <input
+                    type="text"
+                    id="nombreSocio"
+                    placeholder="Nombre completo"
+                >
+
+                <input
+                    type="text"
+                    id="deporteSocio"
+                    placeholder="Deporte"
+                >
+
+                <select id="estadoSocio">
+
+                    <option value="Al día">
+                        Al día
+                    </option>
+
+                    <option value="Pendiente">
+                        Pendiente
+                    </option>
+
+                </select>
+
+                <button onclick="agregarSocio()">
+                    Registrar Socio
+                </button>
+
+            </div>
+
+            <!-- VER SOCIOS -->
+
+            <div id="verSocios" class="admin-seccion card">
+
+                <h3>Listado de Socios</h3>
+
+                <input
+                    type="text"
+                    id="buscador"
+                    placeholder="Buscar socio"
+                >
+
+                <table id="tablaSocios">
+
+                    <thead>
+
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Deporte</th>
+                            <th>Estado</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody></tbody>
+
+                </table>
+
+            </div>
+
+        </main>
+
+    </section>
+
+    <!-- ENTRENADOR -->
+
+    <section id="entrenador" class="pantalla">
+
+        <div class="card">
+
+            <h2>Club Zone - Entrenador</h2>
+
+            <p>
+                Gestión y seguimiento de socios.
+            </p>
+
+            <div id="listaEntrenador"></div>
+
+            <br>
+
+            <button onclick="logout()">
+                Cerrar Sesión
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- SOCIO -->
+
+    <section id="socio" class="pantalla">
+
+        <div class="card">
+
+            <h2>Club Zone - Socio</h2>
+
+            <div id="estadoSocioBox"></div>
+
+            <button onclick="pagar()">
+                Pagar Cuota
+            </button>
+
+            <h3>Historial de Pagos</h3>
+
+            <ul id="historialPagos"></ul>
+
+            <br>
+
+            <button onclick="logout()">
+                Cerrar Sesión
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>Club Zone</h3>
+
+        <p>Email: contacto@clubzone.com</p>
+
+        <p>Teléfono: 3571-123456</p>
+
+        <p>Río Tercero - Córdoba</p>
+
+        <p>© 2026 Club Zone - Todos los derechos reservados</p>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
