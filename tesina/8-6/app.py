@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 
 from flask_cors import CORS
 
-import mysql.connector
+import pymysql
 
 app = Flask(__name__)
 
@@ -11,17 +11,13 @@ CORS(app)
 # MYSQL
 
 def conectar():
-
-    return mysql.connector.connect(
-
-        host="localhost",
-
+    return pymysql.connect(
+        host="127.0.0.1",
+        port=3306,
         user="root",
-
         password="",
-
-        database="club"
-
+        database="club",
+        cursorclass=pymysql.cursors.DictCursor
     )
 
 # LOGIN
@@ -38,7 +34,7 @@ def login():
 
     con = conectar()
 
-    cursor = con.cursor(dictionary=True)
+    cursor = con.cursor()
 
     sql = """
     SELECT * FROM usuarios
@@ -55,12 +51,15 @@ def login():
 
     if usuario:
 
-        return jsonify(usuario)
-
-    return jsonify({
-        "error":"Datos incorrectos"
+      return jsonify({
+        "id": usuario[0],
+        "email": usuario[1],
+        "rol": usuario[3],
+        "nombre": usuario[4]
     })
-
+      return jsonify({
+     "error": "Datos incorrectos"
+    })
 # VER SOCIOS
 
 @app.route('/socios', methods=['GET'])
@@ -69,7 +68,7 @@ def socios():
 
     con = conectar()
 
-    cursor = con.cursor(dictionary=True)
+    cursor = con.cursor()
 
     cursor.execute("SELECT * FROM socios")
 
@@ -174,26 +173,17 @@ def pagos(id):
 
     con = conectar()
 
-    cursor = con.cursor(dictionary=True)
+    con.cursor()
 
     sql = """
     SELECT * FROM pagos
     WHERE socio_id=%s
     """
 
-    cursor.execute(sql, (id,))
-
-    datos = cursor.fetchall()
-
-    cursor.close()
-
-    con.close()
-
-    return jsonify(datos)
 
 # SERVIDOR
 print("Rutas cargadas correctamente")
 print(app.url_map)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False, use_reloader=False)

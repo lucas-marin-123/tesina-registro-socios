@@ -3,9 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
     <title>Club Zone</title>
+    
     <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -15,6 +22,7 @@
     <header>
 
         <div class="logo">
+            <img src="logo.png" alt="Club Zone">
             <h2>CLUB ZONE</h2>
         </div>
 
@@ -96,6 +104,31 @@
             <div id="gridCalendario" class="grid"></div>
 
         </div>
+        <div class="info-club">
+
+    <div class="card">
+        <h3>📢 Noticias del Club</h3>
+        <ul>
+            <li>Nueva temporada de fútbol 2026.</li>
+            <li>Inscripciones abiertas para vóley.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3>⚽ Próximos Partidos</h3>
+        <ul>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3>🏃 Próximos Entrenamientos</h3>
+        <ul>
+            <li>Fútbol - Lunes/miercoles/viernes 18:00</li>
+            <li>Vóley - Miércoles/viernes 19:00</li>
+        </ul>
+    </div>
+
+</div>
 
     </section>
 
@@ -141,7 +174,7 @@
 
         <aside class="sidebar">
 
-            <h3>Panel Club Zone</h3>
+            <h3 id="tituloAdmin">Panel Club Zone</h3>
 
             <button onclick="mostrarSeccionAdmin('registrarSocio')">
                 Registrar Socio
@@ -182,6 +215,11 @@
             <div id="crearUsuario" class="admin-seccion card">
 
                 <h3>Crear Usuario</h3>
+                <input
+                    type="text"
+                    id="nuevoNombre"
+                    placeholder="Nombre"
+            />
 
                 <input
                     type="email"
@@ -282,6 +320,31 @@
                 </table>
 
             </div>
+            <div class="card">
+
+    <h3>Crear Evento</h3>
+
+    <input
+        type="text"
+        id="tituloEvento"
+        placeholder="Nombre del evento"
+    >
+
+    <input
+        type="date"
+        id="fechaEvento"
+    >
+
+    <textarea
+        id="descripcionEvento"
+        placeholder="Descripción"
+    ></textarea>
+
+    <button onclick="crearEvento()">
+        Publicar Evento
+    </button>
+
+</div>
 
         </main>
 
@@ -293,7 +356,7 @@
 
         <div class="card">
 
-            <h2>Club Zone - Entrenador</h2>
+            <h2 id="tituloEntrenador">Club Zone - Entrenador</h2>
 
             <p>
                 Gestión y seguimiento de socios.
@@ -308,6 +371,164 @@
             </button>
 
         </div>
+        <div class="card">
+
+    <h3>Marcar Asistencia</h3>
+
+    <select id="socioAsistencia">
+        <option>Juan Pérez</option>
+        <option>María Gómez</option>
+    </select>
+
+    <select id="estadoAsistencia">
+        <option>Presente</option>
+        <option>Ausente</option>
+    </select>
+
+    <button onclick="guardarAsistencia()">
+        Guardar Asistencia
+    </button>
+
+</div>
+
+<div class="card">
+
+    <h3>Registrar Lesiones u Observaciones</h3>
+
+    <select id="socioObservacion">
+        <option>Juan Pérez</option>
+        <option>María Gómez</option>
+    </select>
+
+    <textarea
+        id="observacion"
+        placeholder="Ingrese observación o lesión"
+    ></textarea>
+
+    <button onclick="guardarObservacion()">
+        Guardar Observación
+    </button>
+
+</div>
+
+<div class="card">
+
+    <h3>Crear Entrenamiento o Actividad</h3>
+
+    <input
+        type="text"
+        id="actividad"
+        placeholder="Nombre de la actividad"
+    >
+
+    <input
+        type="date"
+        id="fechaActividad"
+    >
+
+    <button onclick="crearActividad()">
+        Crear Actividad
+    </button>
+
+</div>
+
+<div class="card">
+
+    <h3>Cargar Resultado de Partido</h3>
+
+    <input
+        type="text"
+        id="rival"
+        placeholder="Equipo rival"
+    >
+
+    <input
+        type="text"
+        id="resultado"
+        placeholder="Ej: 3 - 1"
+    >
+
+    <button onclick="guardarResultado()">
+        Guardar Resultado
+    </button>
+
+</div>
+
+<div class="card">
+
+    <h3>Enviar Aviso a los Socios</h3>
+
+    <textarea
+        id="aviso"
+        placeholder="Escriba el aviso"
+    ></textarea>
+
+    <button onclick="enviarAviso()">
+        Enviar Aviso
+    </button>
+
+</div>
+
+<div class="card">
+
+    <h3>Estadísticas de Asistencia</h3>
+
+    <p>Asistencia Promedio: 85%</p>
+
+    <p>Socios Presentes este mes: 25</p>
+
+</div>
+
+<div class="card">
+
+    <h3>Calendario de Entrenamientos</h3>
+
+    <ul id="listaEntrenamientos">
+        <li>15/06 - Entrenamiento General</li>
+        <li>18/06 - Partido Amistoso</li>
+    </ul>
+
+</div>
+
+<div class="card">
+
+    <h3>Solicitar Material Deportivo</h3>
+
+    <textarea
+        id="material"
+        placeholder="Ej: 10 pelotas de fútbol"
+    ></textarea>
+
+    <button onclick="solicitarMaterial()">
+        Solicitar
+    </button>
+
+</div>
+<div class="card">
+
+    <h3>Crear Evento</h3>
+
+    <input
+        type="text"
+        id="tituloEvento"
+        placeholder="Nombre del evento"
+    >
+
+    <input
+        type="date"
+        id="fechaEvento"
+    >
+
+    <textarea
+        id="descripcionEvento"
+        placeholder="Descripción"
+    ></textarea>
+
+    <button onclick="crearEvento()">
+        Publicar Evento
+    </button>
+
+</div>
 
     </section>
 
@@ -317,25 +538,96 @@
 
         <div class="card">
 
-            <h2>Club Zone - Socio</h2>
+            <h2 id="tituloSocio">Club Zone - Socio</h2>
 
             <div id="estadoSocioBox"></div>
 
-            <button onclick="pagar()">
-                Pagar Cuota
-            </button>
+<div class="contenedor-pago">
 
-            <h3>Historial de Pagos</h3>
+    <div class="tarjeta-3d">
 
-            <ul id="historialPagos"></ul>
+        <div id="marcaTarjeta">TARJETA</div>
 
-            <br>
-
-            <button onclick="logout()">
-                Cerrar Sesión
-            </button>
-
+        <div id="numeroVista">
+            0000 0000 0000 0000
         </div>
+
+        <div id="nombreVista">
+            TITULAR
+        </div>
+
+        <div id="fechaVista">
+            MM/AA
+        </div>
+
+    </div>
+
+    <input
+        type="text"
+        id="numeroTarjeta"
+        placeholder="Número de tarjeta"
+    >
+
+    <input
+        type="text"
+        id="nombreTitular"
+        placeholder="Titular"
+    >
+
+    <input
+        type="text"
+        id="fechaVencimiento"
+        placeholder="MM/AA"
+    >
+
+    <input
+        type="text"
+        id="aliasPago"
+        placeholder="Alias"
+    >
+
+    <button onclick="pagar()">
+        Pagar Cuota
+    </button>
+
+</div>
+
+<h3>Historial de Pagos</h3>
+        <div class="card">
+
+    <h3>Mis Actividades</h3>
+
+    <button>Inscribirme a Torneo</button>
+
+    <button>Inscribirme a Actividad</button>
+
+</div>
+
+<div class="card">
+
+    <h3>Mis Datos</h3>
+
+    <button>Actualizar Datos</button>
+
+</div>
+
+<div class="card">
+
+    <h3>Contacto con Entrenador</h3>
+
+    <textarea placeholder="Enviar mensaje"></textarea>
+
+    <button>Enviar</button>
+
+</div>
+
+<div class="card">
+
+    <h3>Comprobantes</h3>
+
+    <button>Descargar PDF</button>
+
+</div>
 
     </section>
 

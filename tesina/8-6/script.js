@@ -54,7 +54,7 @@ function login(){
             "Content-Type":"application/json"
         },
 
-        body:JSON.stringify({
+       body:JSON.stringify({
             email,
             password
         })
@@ -72,37 +72,57 @@ function login(){
         }
 
         usuarioActual = data;
+        const nombre =
+        data.nombre ||
+        data.email ||
+        "Usuario";
+        
 
         alert(
             "Bienvenido a Club Zone, " +
             data.rol
         );
 
-        if(data.rol === "admin"){
+if(data.rol === "admin"){
 
-            mostrarPantalla("admin");
+    mostrarPantalla("admin");
 
-            cargarSocios();
+    document.getElementById(
+        "tituloAdmin"
+    ).textContent =
+        "Administrador: " + nombre;
 
-            mostrarSeccionAdmin("verSocios");
+    cargarSocios();
 
-        }
+    mostrarSeccionAdmin("verSocios");
 
-        if(data.rol === "entrenador"){
+}
 
-            mostrarPantalla("entrenador");
+if(data.rol === "entrenador"){
 
-            cargarEntrenador();
+    mostrarPantalla("entrenador");
 
-        }
+    document.getElementById(
+        "tituloEntrenador"
+    ).textContent =
+        "Entrenador: " + nombre;
 
-        if(data.rol === "socio"){
+    cargarEntrenador();
 
-            mostrarPantalla("socio");
+}
 
-            cargarPagos();
+if(data.rol === "socio"){
 
-        }
+    mostrarPantalla("socio");
+
+    document.getElementById(
+        "tituloSocio"
+    ).textContent =
+        nombre;
+
+    cargarPagos();
+
+}
 
     })
 
@@ -233,7 +253,7 @@ function agregarSocio(){
 
     .then(data => {
 
-        alert(data.mensaje);
+        alert("✅ Pago realizado correctamente");
 
         document.getElementById(
             "nombreSocio"
@@ -328,6 +348,29 @@ function cargarEntrenador(){
         });
 
     });
+    function guardarAsistencia(){
+    alert("Asistencia guardada");
+}
+
+function guardarObservacion(){
+    alert("Observación guardada");
+}
+
+function crearActividad(){
+    alert("Actividad creada");
+}
+
+function guardarResultado(){
+    alert("Resultado registrado");
+}
+
+function enviarAviso(){
+    alert("Aviso enviado");
+}
+
+function solicitarMaterial(){
+    alert("Solicitud enviada");
+}
 
 }
 
@@ -505,3 +548,98 @@ function toggleTheme(){
     document.body.classList.toggle("dark");
 
 }
+// ===== ENTER EN LOGIN =====
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+
+    if(email && password){
+
+        email.addEventListener("keydown", (e) => {
+
+            if(e.key === "Enter"){
+
+                e.preventDefault();
+                password.focus();
+
+            }
+
+        });
+
+        password.addEventListener("keydown", (e) => {
+
+            if(e.key === "Enter"){
+
+                e.preventDefault();
+                login();
+
+            }
+
+        });
+
+    }
+
+});
+// ===== TARJETA INTERACTIVA =====
+
+document.addEventListener("input", (e) => {
+
+    if(e.target.id === "numeroTarjeta"){
+
+        let valor = e.target.value;
+
+        let numeroVista =
+        document.getElementById("numeroVista");
+
+        if(numeroVista){
+            numeroVista.textContent =
+            valor || "0000 0000 0000 0000";
+        }
+
+        if(valor.startsWith("4")){
+
+            document.getElementById(
+                "marcaTarjeta"
+            ).textContent = "VISA";
+
+            document.querySelector(
+                ".tarjeta-3d"
+            ).style.background =
+            "linear-gradient(135deg,#1e3a8a,#2563eb,#38bdf8)";
+        }
+
+        else if(valor.startsWith("5")){
+
+            document.getElementById(
+                "marcaTarjeta"
+            ).textContent = "MASTERCARD";
+
+            document.querySelector(
+                ".tarjeta-3d"
+            ).style.background =
+            "linear-gradient(135deg,#7f1d1d,#dc2626,#f59e0b)";
+        }
+
+    }
+
+    if(e.target.id === "nombreTitular"){
+
+        document.getElementById(
+            "nombreVista"
+        ).textContent =
+        e.target.value || "TITULAR";
+
+    }
+
+    if(e.target.id === "fechaVencimiento"){
+
+        document.getElementById(
+            "fechaVista"
+        ).textContent =
+        e.target.value || "MM/AA";
+
+    }
+
+});
