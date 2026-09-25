@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Club Zone</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            <img src="logo.png" alt="Club Zone">
+            <h2>CLUB ZONE</h2>
+        </div>
+
+        <div class="header-actions">
+
+            <button onclick="toggleTheme()">
+                🌚 Tema / Tema ☀️
+            </button>
+
+            <button onclick="window.location.href='login.html'">
+                Iniciar Sesión
+            </button>
+
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    </header>
+
+    <!-- INICIO -->
+
+    <section id="inicio" class="pantalla activa">
+
+        <div class="landing">
+
+            <h1>Bienvenido a Club Zone</h1>
+
+            <p>
+                La plataforma inteligente para administrar socios,
+                entrenadores, pagos y actividades deportivas.
+            </p>
+
+            <div class="card">
+
+                <h3>¿Qué ofrece Club Zone?</h3>
+
+                <p>✓ Gestión completa de socios</p>
+                <p>✓ Control de cuotas y pagos</p>
+                <p>✓ Administración de entrenadores</p>
+                <p>✓ Calendario de actividades</p>
+                <p>✓ Plataforma moderna y segura</p>
+
+            </div>
+
+            <br>
+
+            <button onclick="window.location.href='login.html'">
+                Comenzar
+            </button>
+
+        </div>
+
+        <!-- CALENDARIO -->
+
+        <div class="calendario card">
+
+            <div class="cal-header">
+
+                <button onclick="cambiarMes(-1)">
+                    ←
+                </button>
+
+                <h2 id="mesAnio"></h2>
+
+                <button onclick="cambiarMes(1)">
+                    →
+                </button>
+
+            </div>
+
+            <div class="dias">
+                <div>Dom</div>
+                <div>Lun</div>
+                <div>Mar</div>
+                <div>Mié</div>
+                <div>Jue</div>
+                <div>Vie</div>
+                <div>Sáb</div>
+            </div>
+
+            <div id="gridCalendario" class="grid"></div>
+
+        </div>
+
+        <!-- INFORMACIÓN DEL CLUB -->
+
+        <div class="info-club">
+
+            <div class="card">
+
+                <h3>📢 Noticias del Club</h3>
+
+                <ul>
+                    <li>Nueva temporada de fútbol 2026.</li>
+                    <li>Inscripciones abiertas para vóley.</li>
+                </ul>
+
+            </div>
+
+            <div class="card">
+
+                <h3>⚽ Próximos Partidos</h3>
+
+                <ul>
+                </ul>
+
+            </div>
+
+            <div class="card">
+
+                <h3>🏃 Próximos Entrenamientos</h3>
+
+                <ul>
+                    <li>Fútbol - Lunes/miércoles/viernes 18:00</li>
+                    <li>Vóley - Miércoles/viernes 19:00</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>Club Zone</h3>
+
+        <p>Email: contacto@clubzone.com</p>
+        <p>Teléfono: 3571-123456</p>
+        <p>Río Tercero - Córdoba</p>
+        <p>© 2026 Club Zone - Todos los derechos reservados</p>
+
+    </footer>
+
+    <script src="../javascript/script.js"></script>
+
+    <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administrador - Club Zone</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+    <section id="admin" class="pantalla activa dashboard">
+        
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <img src="logo.png" alt="Club Zone">
+
+                <h3>CLUB ZONE</h3>
+
+            </div>
+
+            <h3 id="tituloAdmin">
+                Panel Administrador
+            </h3>
+
+            <button onclick="mostrarSeccionAdmin('registrarSocio')">
+                Registrar Socio
+            </button>
+
+            <button onclick="mostrarSeccionAdmin('verSocios')">
+                Ver Socios
+            </button>
+
+            <button onclick="mostrarSeccionAdmin('crearUsuario')">
+                Crear Usuario
+            </button>
+
+            <button onclick="mostrarSeccionAdmin('crearEventoAdmin')">
+                Crear Evento
+            </button>
+
+            <button onclick="logout()">
+                Cerrar Sesión
+            </button>
+
+        </aside>
+
+        <!-- CONTENIDO -->
+
+        <main>
+
+            <div class="stats">
+
+                <div class="card">
+
+                    <h3>Total Socios</h3>
+
+                    <span id="totalSocios">
+                        0
+                    </span>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Ingresos</h3>
+
+                    $<span id="ingresos">
+                        0
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- CREAR USUARIO -->
+
+            <div
+                id="crearUsuario"
+                class="admin-seccion card"
+            >
+
+                <h3>Crear Usuario</h3>
+
+                <input
+                    type="text"
+                    id="nuevoNombre"
+                    placeholder="Nombre"
+                >
+
+                <input
+                    type="email"
+                    id="nuevoEmail"
+                    placeholder="Correo electrónico"
+                >
+
+                <input
+                    type="password"
+                    id="nuevoPassword"
+                    placeholder="Contraseña"
+                >
+
+                <select id="nuevoRol">
+
+                    <option value="admin">
+                        Administrador
+                    </option>
+
+                    <option value="entrenador">
+                        Entrenador
+                    </option>
+
+                    <option value="socio">
+                        Socio
+                    </option>
+
+                </select>
+
+                <button onclick="crearUsuario()">
+                    Guardar Usuario
+                </button>
+
+            </div>
+
+            <!-- REGISTRAR SOCIO -->
+
+            <div
+                id="registrarSocio"
+                class="admin-seccion card"
+            >
+
+                <h3>Registrar Socio</h3>
+
+                <input
+                    type="text"
+                    id="nombreSocio"
+                    placeholder="Nombre completo"
+                >
+
+                <input
+                    type="text"
+                    id="deporteSocio"
+                    placeholder="Deporte"
+                >
+
+                <select id="estadoSocio">
+
+                    <option value="Al día">
+                        Al día
+                    </option>
+
+                    <option value="Pendiente">
+                        Pendiente
+                    </option>
+
+                </select>
+
+                <button onclick="agregarSocio()">
+                    Registrar Socio
+                </button>
+
+            </div>
+
+            <!-- VER SOCIOS -->
+
+            <div
+                id="verSocios"
+                class="admin-seccion card"
+            >
+
+                <h3>Listado de Socios</h3>
+
+                <input
+                    type="text"
+                    id="buscador"
+                    placeholder="Buscar socio"
+                >
+
+                <table id="tablaSocios">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Nombre</th>
+                            <th>Deporte</th>
+                            <th>Estado</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody></tbody>
+
+                </table>
+
+            </div>
+
+            <!-- CREAR EVENTO -->
+
+            <div
+                id="crearEventoAdmin"
+                class="admin-seccion card"
+            >
+
+                <h3>Crear Evento</h3>
+
+                <input
+                    type="text"
+                    id="tituloEventoAdmin"
+                    placeholder="Nombre del evento"
+                >
+
+                <input
+                    type="date"
+                    id="fechaEventoAdmin"
+                >
+
+                <textarea
+                    id="descripcionEventoAdmin"
+                    placeholder="Descripción"
+                ></textarea>
+
+                <button onclick="crearEventoAdmin()">
+                    Publicar Evento
+                </button>
+
+            </div>
+
+        </main>
+
+    </section>
+
+    <script src="../javascript/script.js"></script>
+
+    <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+</body>
+
+</html>
