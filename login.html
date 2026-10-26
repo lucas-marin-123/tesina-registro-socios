@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Iniciar Sesión - Club Zone</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+
+            <img src="logo.png" alt="Club Zone">
+
+            <h2>CLUB ZONE</h2>
+
+        </div>
+
+        <div class="header-actions">
+
+            <button id="btnTheme" onclick="toggleTheme()" class="btn-theme">
+                <span id="themeIcon">🌚 / ☀️</span> <span id="themeText"></span>
+            </button>
+
+            <button onclick="window.location.href='index.html'">
+                Inicio
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- LOGIN -->
+
+    <section class="pantalla activa">
+
+        <div class="login-container">
+
+            <div class="card login-box">
+
+                <h2>Ingreso a Club Zone</h2>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Correo electrónico"
+                >
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Contraseña"
+                >
+
+                <button onclick="login()">
+                    Ingresar
+                </button>
+
+                <button onclick="window.location.href='index.html'">
+                    Volver
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <script src="../javascript/script.js"></script>
+
+    <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+</body>
+
+</html>

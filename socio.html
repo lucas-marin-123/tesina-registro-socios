@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socio - Club Zone</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body class="dark">
+
+    <section id="socio" class="pantalla activa dashboard">
+
+        <!-- SIDEBAR DE NAVEGACIÓN -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="logo.png" alt="Club Zone">
+                <h3>CLUB ZONE</h3>
+            </div>
+
+            <h3 id="tituloAdmin">Panel Socio</h3>
+
+            <!-- AVATAR / FOTO DE PERFIL DE USUARIO -->
+            <div class="card foto-perfil-card">
+                <h3>Foto de Perfil</h3>
+                <div class="foto-contenedor">
+                    <div id="avatarInitial" class="avatar-circle">?</div>
+                </div>
+                <button onclick="abrirModalPerfil()" class="btn-subir-foto">Cambiar Foto</button>
+            </div>
+
+            <button onclick="mostrarSeccionSocio('socioInicio')">🏠 Inicio</button>
+            <button onclick="mostrarSeccionSocio('socioPago')">💳 Pagar Cuota</button>
+            <button onclick="mostrarSeccionSocio('socioHistorial')">📋 Historial Pagos</button>
+            <button onclick="mostrarSeccionSocio('socioActividades')">⚽ Mis Actividades</button>
+            <button onclick="mostrarSeccionSocio('socioDatos')">👤 Mis Datos</button>
+            <button onclick="mostrarSeccionSocio('socioContacto')">💬 Contacto</button>
+            <button onclick="mostrarSeccionSocio('socioComprobantes')">📄 Comprobantes</button>
+            <button onclick="logout()">Cerrar Sesión</button>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main>
+
+            <!-- STATS DE SOCIO -->
+            <div class="stats">
+                <div class="card">
+                    <h3>Estado de Cuota</h3>
+                    <span style="color:#22c55e; font-weight:bold;">Al Día</span>
+                </div>
+                <div class="card">
+                    <h3>Actividades Activas</h3>
+                    <span>2</span>
+                </div>
+            </div>
+
+            <!-- INICIO SOCIO -->
+            <div id="socioInicio" class="socio-seccion card" style="display: block;">
+                <h3>🏠 Inicio</h3>
+                <p>Bienvenido a tu panel de Club Zone.</p>
+                <div id="estadoSocioInicio"></div>
+            </div>
+
+            <!-- PAGO -->
+            <div id="socioPago" class="socio-seccion card" style="display: none;">
+                <h3>💳 Pagar Cuota</h3>
+                <div class="contenedor-pago">
+                    <div class="tarjeta-3d">
+                        <div id="marcaTarjeta">TARJETA</div>
+                        <div id="numeroVista">0000 0000 0000 0000</div>
+                        <div id="nombreVista">TITULAR</div>
+                        <div id="fechaVista">MM/AA</div>
+                    </div>
+                    <input type="text" id="numeroTarjeta" placeholder="Número de tarjeta">
+                    <input type="text" id="nombreTitular" placeholder="Titular">
+                    <input type="text" id="fechaVencimiento" placeholder="MM/AA">
+                    <input type="text" id="aliasPago" placeholder="Alias">
+                    <button onclick="pagar()">Pagar Cuota</button>
+                </div>
+            </div>
+
+            <!-- HISTORIAL DE PAGOS -->
+            <div id="socioHistorial" class="socio-seccion card" style="display: none;">
+                <h3>📋 Historial de Pagos</h3>
+                <div id="historialPagos">
+                    <p>Todavía no hay pagos registrados.</p>
+                </div>
+            </div>
+
+            <!-- MIS ACTIVIDADES -->
+            <div id="socioActividades" class="socio-seccion card" style="display: none;">
+                <h3>Mis Actividades</h3>
+                <button onclick="inscribirTorneo()">Inscribirme a Torneo</button>
+                <button onclick="inscribirActividad()">Inscribirme a Actividad</button>
+            </div>
+            
+            <!-- MIS DATOS -->
+            <div id="socioDatos" class="socio-seccion card" style="display: none;">
+                <h3>Mis Datos</h3>
+                <button onclick="actualizarDatosSocio()">Actualizar Datos</button>
+            </div>
+
+            <!-- CONTACTO -->
+            <div id="socioContacto" class="socio-seccion card" style="display: none;">
+                <h3>💬 Contacto con Entrenador</h3>
+                <textarea placeholder="Enviar mensaje"></textarea>
+                <button onclick="enviarMensajeEntrenador()">Enviar</button>
+            </div>
+
+            <!-- COMPROBANTES -->
+            <div id="socioComprobantes" class="socio-seccion card" style="display: none;">
+                <h3>Comprobantes</h3>
+                <button onclick="descargarComprobantePDF()">Descargar PDF</button>
+            </div>
+
+        </main>
+
+    </section>
+
+    <script src="../javascript/script.js"></script>
+
+    <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrenador - Club Zone</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body class="dark">
+
+    <section id="entrenador" class="pantalla activa dashboard">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="logo.png" alt="Club Zone">
+                <h3>CLUB ZONE</h3>
+            </div>
+
+            <h3 id="tituloAdmin">Panel Entrenador</h3>
+
+            <button onclick="mostrarSeccionEntrenador('secAsistencia')">Marcar Asistencia</button>
+            <button onclick="mostrarSeccionEntrenador('secObservaciones')">Observaciones</button>
+            <button onclick="mostrarSeccionEntrenador('secActividades')">Crear Entrenamiento</button>
+            <button onclick="mostrarSeccionEntrenador('secResultados')">Cargar Resultado</button>
+            <button onclick="mostrarSeccionEntrenador('secAvisos')">Enviar Avisos</button>
+            <button onclick="mostrarSeccionEntrenador('secMaterial')">Solicitar Material</button>
+            <button onclick="mostrarSeccionEntrenador('secEventoEntrenador')">Crear Evento</button>
+            <button onclick="logout()">Cerrar Sesión</button>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main>
+
+            <!-- STATS -->
+            <div class="stats">
+                <div class="card">
+                    <h3>Asistencia Promedio</h3>
+                    <span>85%</span>
+                </div>
+                <div class="card">
+                    <h3>Socios Presentes (Mes)</h3>
+                    <span>25</span>
+                </div>
+            </div>
+
+            <!-- MARCAR ASISTENCIA -->
+            <div id="secAsistencia" class="entrenador-seccion card" style="display: block;">
+                <h3>Marcar Asistencia</h3>
+                <select id="socioAsistencia">
+                    <option>Juan Pérez</option>
+                    <option>María Gómez</option>
+                </select>
+                <select id="estadoAsistencia">
+                    <option>Presente</option>
+                    <option>Ausente</option>
+                </select>
+                <button onclick="guardarAsistencia()">Guardar Asistencia</button>
+            </div>
+
+            <!-- OBSERVACIONES -->
+            <div id="secObservaciones" class="entrenador-seccion card" style="display: none;">
+                <h3>Registrar Lesiones u Observaciones</h3>
+                <select id="socioObservacion">
+                    <option>Juan Pérez</option>
+                    <option>María Gómez</option>
+                </select>
+                <textarea id="observacion" placeholder="Ingrese observación o lesión"></textarea>
+                <button onclick="guardarObservacion()">Guardar Observación</button>
+            </div>
+
+            <!-- ACTIVIDAD -->
+            <div id="secActividades" class="entrenador-seccion card" style="display: none;">
+                <h3>Crear Entrenamiento o Actividad</h3>
+                <input type="text" id="actividad" placeholder="Nombre de la actividad">
+                <input type="date" id="fechaActividad">
+                <button onclick="crearActividad()">Crear Actividad</button>
+            </div>
+
+            <!-- RESULTADO -->
+            <div id="secResultados" class="entrenador-seccion card" style="display: none;">
+                <h3>Cargar Resultado de Partido</h3>
+                <input type="text" id="rival" placeholder="Equipo rival">
+                <input type="text" id="resultado" placeholder="Ej: 3 - 1">
+                <button onclick="guardarResultado()">Guardar Resultado</button>
+            </div>
+
+            <!-- AVISOS -->
+            <div id="secAvisos" class="entrenador-seccion card" style="display: none;">
+                <h3>Enviar Aviso a los Socios</h3>
+                <textarea id="aviso" placeholder="Escriba el aviso"></textarea>
+                <button onclick="enviarAviso()">Enviar Aviso</button>
+            </div>
+
+            <!-- MATERIAL -->
+            <div id="secMaterial" class="entrenador-seccion card" style="display: none;">
+                <h3>Solicitar Material Deportivo</h3>
+                <textarea id="material" placeholder="Ej: 10 pelotas de fútbol"></textarea>
+                <button onclick="solicitarMaterial()">Solicitar</button>
+            </div>
+
+            <!-- EVENTO -->
+            <div id="secEventoEntrenador" class="entrenador-seccion card" style="display: none;">
+                <h3>Crear Evento</h3>
+                <input type="text" id="tituloEventoEntrenador" placeholder="Nombre del evento">
+                <input type="date" id="fechaEventoEntrenador">
+                <textarea id="descripcionEventoEntrenador" placeholder="Descripción"></textarea>
+                <button onclick="crearEventoEntrenador()">Publicar Evento</button>
+            </div>
+
+        </main>
+
+    </section>
+
+    <script src="../javascript/script.js"></script>
+
+    <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+</body>
+
+</html>
